@@ -1,12 +1,18 @@
 package org.launchcode.javawebdevtechjobspersistent.models;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Skill extends AbstractEntity {
 
-    @Size(max = 500, message = "Desciption must be less than 500 characters.")
+
+    @ManyToMany(mappedBy = "skills")
+    List<Job> jobs = new ArrayList<>();
+
+    @Size(max = 500, message = "Description must be less than 500 characters.")
     private String description;
 
     public Skill(){};
